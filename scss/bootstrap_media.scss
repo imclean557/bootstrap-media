@@ -1,0 +1,37 @@
+.views-exposed-form {
+
+  .form-item {
+    margin-right: 0.5em;
+    margin-top: 0.75em;    
+    float: left;
+  }
+  
+  .form-group {
+    margin-bottom: 15px !important;
+  }
+  
+  label {
+    display: table;
+  }
+
+}
+
+.btn-group {
+  position: static !important;
+  > .media-library-widget__toggle-weight {
+    top: 10px;
+  }
+}
+
+.media-library-item > .form-group {
+  margin-bottom: 0 !important;
+}
+
+button.link {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}

@@ -1,0 +1,5 @@
+name: 'Bootstrap Media'
+type: module
+description: 'Improves Media Library presentation when using Bootstrap.'
+core: 8.x
+package: 'Bootstrap'

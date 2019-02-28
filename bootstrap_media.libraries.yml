@@ -1,0 +1,5 @@
+bootstrap_media:
+  version: 1.x
+  css:    
+    theme:
+      css/bootstrap_media.css: {}

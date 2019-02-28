@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Contains bootstrap_media.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function bootstrap_media_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bootstrap_media module.
+    case 'help.page.bootstrap_media':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Improves Media Library presentation when using Bootstrap.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bootstrap_media_theme() {
+  return [
+    'bootstrap_media' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * 
+ * @param array $element
+ * @param FormStateInterface $form_state
+ * @param array $context
+ */
+function bootstrap_media_field_widget_media_library_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+  // Drupal\media_library\Plugin\Field\FieldWidget\MediaLibraryWidget
+  $element['#field_prefix'] = '<div class="btn-group">';
+  $element['#field_suffix'] = '</div>';
+  $element['media_library_open_button']['#attributes']['class'] = array_merge($element['media_library_open_button']['#attributes']['class'], ['btn','btn-primary']);
+  $element['media_library_add_button']['#attributes']['class'] = array_merge($element['media_library_add_button']['#attributes']['class'], ['btn','btn-primary']);
+  $element['#attached']['library'][] = 'bootstrap_media/bootstrap_media';
+}
+
+/**
+ * Preprocess function to modify the Media Library view.
+ */
+function bootstrap_media_preprocess_media_view(&$variables) {
+  $view = $variables['view'];
+  if ($view->id() === 'media_library' && $view->current_display === 'widget') {
+    $url = Url::fromRoute('media_library.upload');
+    if ($url->access()) {
+      if (isset($variables['header']['add_media'])) {
+        $variables['header']['add_media']['#attributes']['class'] = array_merge($variables['header']['add_media']['#attributes']['class'], ['btn', 'btn-primary']);
+        $variables['#attached']['library'][] = 'bootstrap_media/bootstrap_media';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ * 
+ * Add preprocess function after Media Library's.
+ * 
+ * @param string $theme_registry
+ */
+function bootstrap_media_theme_registry_alter(&$theme_registry) {
+  if (in_array('media_library_preprocess_views_view', $theme_registry['views_view']['preprocess functions'])) {
+    $theme_registry['views_view']['preprocess functions'][] = 'bootstrap_media_preprocess_media_view';
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "drupal/bootstrap_media",
+  "type": "drupal-module",
+  "description": "Improves presentation of Media Library elements when using Bootstrap.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/bootstrap_media",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/bootstrap_media",
+    "source": "http://cgit.drupalcode.org/bootstrap_media"
+  },
+  "require": { }
+}
