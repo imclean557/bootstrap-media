@@ -38,17 +38,13 @@ function bootstrap_media_theme() {
 
 /**
  * Implements hook_field_widget_WIDGET_TYPE_form_alter().
- * 
- * @param array $element
- * @param FormStateInterface $form_state
- * @param array $context
  */
 function bootstrap_media_field_widget_media_library_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
-  // Drupal\media_library\Plugin\Field\FieldWidget\MediaLibraryWidget
+  // Drupal\media_library\Plugin\Field\FieldWidget\MediaLibraryWidget.
   $element['#field_prefix'] = '<div class="btn-group">';
   $element['#field_suffix'] = '</div>';
-  $element['media_library_open_button']['#attributes']['class'] = array_merge($element['media_library_open_button']['#attributes']['class'], ['btn','btn-primary']);
-  $element['media_library_add_button']['#attributes']['class'] = array_merge($element['media_library_add_button']['#attributes']['class'], ['btn','btn-primary']);
+  $element['media_library_open_button']['#attributes']['class'] = array_merge($element['media_library_open_button']['#attributes']['class'], ['btn', 'btn-primary']);
+  $element['media_library_add_button']['#attributes']['class'] = array_merge($element['media_library_add_button']['#attributes']['class'], ['btn', 'btn-primary']);
   $element['#attached']['library'][] = 'bootstrap_media/bootstrap_media';
 }
 
@@ -70,10 +66,8 @@ function bootstrap_media_preprocess_media_view(&$variables) {
 
 /**
  * Implements hook_theme_registry_alter().
- * 
+ *
  * Add preprocess function after Media Library's.
- * 
- * @param string $theme_registry
  */
 function bootstrap_media_theme_registry_alter(&$theme_registry) {
   if (in_array('media_library_preprocess_views_view', $theme_registry['views_view']['preprocess functions'])) {
