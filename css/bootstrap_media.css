@@ -26,5 +26,8 @@ button.link {
   background: transparent;
   font-size: 1em;
 }
+.media-library-item__weight.form-control {
+  width: 100% !important;
+}
 
 /*# sourceMappingURL=bootstrap_media.css.map */
